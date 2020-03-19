@@ -106,7 +106,7 @@ public class AddPartController implements Initializable, Controller {
         alert.setHeaderText("Confirm Cancelation");
         alert.setContentText("Are you sure you want to cancel adding part?");
         Optional<ButtonType> result = alert.showAndWait();
-        if(result.get() == ButtonType.OK) {
+        if(result.isPresent() && result.get() == ButtonType.OK) {
             System.out.println("Ok selected. AbstractPart addition canceled.");
             displayScene(event, "/fxml/MainScreen.fxml");
         } else {
@@ -161,7 +161,7 @@ public class AddPartController implements Initializable, Controller {
                 alert.setContentText(errorMessage);
                 alert.showAndWait();
             } else {
-               if(isOutsourced == true) {
+               if(isOutsourced) {
                     service.addOutsourcePart(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), partDynamicValue);
                 } else {
                     service.addInhousePart(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), Integer.parseInt(partDynamicValue));
