@@ -10,6 +10,7 @@ import java.util.StringTokenizer;
 
 public class InventoryRepository {
 
+	// Se initializeaza repository-ul
 	private static String filename = "data/items.txt";
 	private Inventory inventory;
 
@@ -19,6 +20,7 @@ public class InventoryRepository {
 		readProducts();
 	}
 
+	//Se citeste lista cu piese
 	public void readParts(){
 		ClassLoader classLoader = InventoryRepository.class.getClassLoader();
 		File file = new File(classLoader.getResource(filename).getFile());
@@ -41,6 +43,7 @@ public class InventoryRepository {
 		inventory.setAllParts(listP);
 	}
 
+	// Se transpune un "obiect piesa" in format string
 	private Part getPartFromString(String line){
 		Part item=null;
 		if (line==null|| line.equals("")) return null;
@@ -71,6 +74,7 @@ public class InventoryRepository {
 		return item;
 	}
 
+	// Se citeste lista cu produse
 	public void readProducts(){
 		ClassLoader classLoader = InventoryRepository.class.getClassLoader();
 		File file = new File(classLoader.getResource(filename).getFile());
@@ -94,6 +98,7 @@ public class InventoryRepository {
 		inventory.setProducts(listP);
 	}
 
+	// Se transpune un "obiect produs" in format string
 	private Product getProductFromString(String line){
 		Product product=null;
 		if (line==null|| line.equals("")) return null;
@@ -123,6 +128,7 @@ public class InventoryRepository {
 		return product;
 	}
 
+	//Se scriu listele de produse si piese in fisierul de tip txt
 	public void writeAll() {
 
 		ClassLoader classLoader = InventoryRepository.class.getClassLoader();
@@ -159,11 +165,13 @@ public class InventoryRepository {
 		}
 	}
 
+	//Se adauga o piesa
 	public void addPart(Part part){
 		inventory.addPart(part);
 		writeAll();
 	}
 
+	//Se adauga un produs
 	public void addProduct(Product product){
 		inventory.addProduct(product);
 		writeAll();
@@ -193,21 +201,25 @@ public class InventoryRepository {
 		return inventory.lookupProduct(search);
 	}
 
+	// Se modifica o piesa
 	public void updatePart(int partIndex, Part part){
 		inventory.updatePart(partIndex, part);
 		writeAll();
 	}
 
+	// Se modifica un produs
 	public void updateProduct(int productIndex, Product product){
 		inventory.updateProduct(productIndex, product);
 		writeAll();
 	}
 
+	//Se sterge o piesa
 	public void deletePart(Part part){
 		inventory.deletePart(part);
 		writeAll();
 	}
 
+	//Se sterge un produs
 	public void deleteProduct(Product product){
 		inventory.removeProduct(product);
 		writeAll();
