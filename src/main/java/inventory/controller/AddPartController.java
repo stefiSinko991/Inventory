@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import org.apache.log4j.Logger;
 
 
 public class AddPartController implements Initializable, Controller {
@@ -24,8 +25,10 @@ public class AddPartController implements Initializable, Controller {
     private Stage stage;
     private Parent scene;
     private boolean isOutsourced = true;
-    private String errorMessage = new String();
-    private int partId;
+    private String errorMessage = "";
+
+    private static final Logger logger = Logger.getLogger(AddPartController.class);
+
 
     private InventoryService service;
     
@@ -59,7 +62,9 @@ public class AddPartController implements Initializable, Controller {
     @FXML
     private TextField minTxt;
 
-    public AddPartController(){}
+    public AddPartController(){
+        //empty constructor
+    }
 
     @Override
     public void setService(InventoryService service){
@@ -84,7 +89,6 @@ public class AddPartController implements Initializable, Controller {
     private void displayScene(ActionEvent event, String source) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
         FXMLLoader loader= new FXMLLoader(getClass().getResource(source));
-        //scene = FXMLLoader.load(getClass().getResource(source));
         scene = loader.load();
         Controller ctrl=loader.getController();
         ctrl.setService(service);
@@ -107,10 +111,10 @@ public class AddPartController implements Initializable, Controller {
         alert.setContentText("Are you sure you want to cancel adding part?");
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK) {
-            System.out.println("Ok selected. AbstractPart addition canceled.");
+            logger.error("Ok selected. AbstractPart addition canceled.");
             displayScene(event, "/fxml/MainScreen.fxml");
         } else {
-            System.out.println("Cancel clicked.");
+            logger.error("Cancel clicked.");
         }
     }
     
@@ -170,7 +174,7 @@ public class AddPartController implements Initializable, Controller {
             }
             
         } catch (NumberFormatException e) {
-            System.out.println("Form contains blank field.");
+            logger.error("Form contains blank field.");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error Adding AbstractPart!");
             alert.setHeaderText("Error!");

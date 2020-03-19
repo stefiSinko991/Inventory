@@ -159,7 +159,7 @@ public class ModifyPartController implements Initializable, Controller {
         alert.setHeaderText("Confirm Cancellation");
         alert.setContentText("Are you sure you want to cancel modifying part " + nameTxt.getText() + "?");
         Optional<ButtonType> result = alert.showAndWait();
-        if(result.get() == ButtonType.OK) {
+        if(result.isPresent() && result.get() == ButtonType.OK) {
             System.out.println("Ok selected. AbstractPart modification cancelled.");
             displayScene(event, "/fxml/MainScreen.fxml");
         } else {
@@ -175,7 +175,7 @@ public class ModifyPartController implements Initializable, Controller {
      */
     @FXML
     void handleModifyPartSave(ActionEvent event) throws IOException {
-        String partId = partIdTxt.getText();
+        String partIdbox = partIdTxt.getText();
         String name = nameTxt.getText();
         String price = priceTxt.getText();
         String inStock = inventoryTxt.getText();
@@ -194,9 +194,9 @@ public class ModifyPartController implements Initializable, Controller {
                 alert.showAndWait();
             } else {
                 if(isOutsourced == true) {
-                    service.updateOutsourcedPart(partIndex, Integer.parseInt(partId), name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), partDynamicValue);
+                    service.updateOutsourcedPart(partIndex, Integer.parseInt(partIdbox), name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), partDynamicValue);
                 } else {
-                    service.updateInhousePart(partIndex, Integer.parseInt(partId), name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), Integer.parseInt(partDynamicValue));
+                    service.updateInhousePart(partIndex, Integer.parseInt(partIdbox), name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), Integer.parseInt(partDynamicValue));
                 }
                 displayScene(event, "/fxml/MainScreen.fxml");
             }

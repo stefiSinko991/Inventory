@@ -95,7 +95,7 @@ public class Product {
     
     public AbstractPart lookupAssociatedPart(String searchItem) {
         for(AbstractPart p:associatedParts) {
-            if(p.getName().contains(searchItem) || new Integer(p.getPartId()).toString().equals(searchItem)) return p;
+            if(p.getName().contains(searchItem) || Integer.toString(p.getPartId()).equals(searchItem)) return p;
         }
         return null;
     }
