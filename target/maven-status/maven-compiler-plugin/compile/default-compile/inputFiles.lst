@@ -1,0 +1,14 @@
+D:\VVSS\git\Inventory\src\main\java\inventory\model\Product.java
+D:\VVSS\git\Inventory\src\main\java\inventory\model\Part.java
+D:\VVSS\git\Inventory\src\main\java\inventory\controller\Controller.java
+D:\VVSS\git\Inventory\src\main\java\inventory\model\Inventory.java
+D:\VVSS\git\Inventory\src\main\java\inventory\controller\ModifyProductController.java
+D:\VVSS\git\Inventory\src\main\java\inventory\model\OutsourcedPart.java
+D:\VVSS\git\Inventory\src\main\java\inventory\model\InhousePart.java
+D:\VVSS\git\Inventory\src\main\java\inventory\controller\MainScreenController.java
+D:\VVSS\git\Inventory\src\main\java\inventory\controller\AddProductController.java
+D:\VVSS\git\Inventory\src\main\java\inventory\controller\ModifyPartController.java
+D:\VVSS\git\Inventory\src\main\java\inventory\repository\InventoryRepository.java
+D:\VVSS\git\Inventory\src\main\java\inventory\controller\AddPartController.java
+D:\VVSS\git\Inventory\src\main\java\inventory\service\InventoryService.java
+D:\VVSS\git\Inventory\src\main\java\inventory\Main.java

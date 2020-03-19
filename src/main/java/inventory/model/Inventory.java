@@ -8,7 +8,7 @@ public class Inventory {
     
     // Declare fields
     private ObservableList<Product> products;
-    private ObservableList<Part> allParts;
+    private ObservableList<AbstractPart> allParts;
     private int autoPartId;
     private int autoProductId;
 
@@ -35,7 +35,7 @@ public class Inventory {
      * Remove product from observable list products
      * @param product 
      */
-    public void removeProduct(Product product) {
+    public void deleteProduct(Product product) {
         products.remove(product);
     }
     
@@ -82,7 +82,7 @@ public class Inventory {
      * Add new part to observable list allParts
      * @param part 
      */
-    public void addPart(Part part) {
+    public void addPart(AbstractPart part) {
         allParts.add(part);
     }
     
@@ -90,7 +90,7 @@ public class Inventory {
      * Removes part passed as parameter from allParts
      * @param part 
      */
-    public void deletePart(Part part) {
+    public void deletePart(AbstractPart part) {
         allParts.remove(part);
     }
     
@@ -99,8 +99,8 @@ public class Inventory {
      * @param searchItem
      * @return 
      */
-    public Part lookupPart(String searchItem) {
-        for(Part p:allParts) {
+    public AbstractPart lookupPart(String searchItem) {
+        for(AbstractPart p:allParts) {
             if(p.getName().contains(searchItem) || (p.getPartId()+"").equals(searchItem)) return p;
         }
         return null;
@@ -111,7 +111,7 @@ public class Inventory {
      * @param index
      * @param part 
      */
-    public void updatePart(int index, Part part) {
+    public void updatePart(int index, AbstractPart part) {
         allParts.set(index, part);
     }
     
@@ -119,7 +119,7 @@ public class Inventory {
      * Getter for allParts Observable List
      * @return 
      */
-    public ObservableList<Part> getAllParts() {
+    public ObservableList<AbstractPart> getAllParts() {
         return allParts;
     }
 
@@ -127,7 +127,7 @@ public class Inventory {
      *
      * @param list
      */
-    public void setAllParts(ObservableList<Part> list) {
+    public void setAllParts(ObservableList<AbstractPart> list) {
         allParts=list;
     }
     

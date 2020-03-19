@@ -1,9 +1,9 @@
 
 package inventory.controller;
 
+import inventory.model.AbstractPart;
 import inventory.model.InhousePart;
 import inventory.model.OutsourcedPart;
-import inventory.model.Part;
 import inventory.service.InventoryService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -73,7 +73,7 @@ public class ModifyPartController implements Initializable, Controller {
     }
 
     private void fillWithData(){
-        Part part = service.getAllParts().get(partIndex);
+        AbstractPart part = service.getAllParts().get(partIndex);
 
         partId = service.getAllParts().get(partIndex).getPartId();
         partIdTxt.setText(Integer.toString(part.getPartId()));
@@ -160,7 +160,7 @@ public class ModifyPartController implements Initializable, Controller {
         alert.setContentText("Are you sure you want to cancel modifying part " + nameTxt.getText() + "?");
         Optional<ButtonType> result = alert.showAndWait();
         if(result.get() == ButtonType.OK) {
-            System.out.println("Ok selected. Part modification cancelled.");
+            System.out.println("Ok selected. AbstractPart modification cancelled.");
             displayScene(event, "/fxml/MainScreen.fxml");
         } else {
             System.out.println("Cancel clicked. Please complete part modification.");
@@ -169,7 +169,7 @@ public class ModifyPartController implements Initializable, Controller {
 
     /**
      * Validate part attributes and save modifications to chosen
-     * Part object then switch scene to MainScreen
+     * AbstractPart object then switch scene to MainScreen
      * @param event
      * @throws IOException
      */
@@ -185,10 +185,10 @@ public class ModifyPartController implements Initializable, Controller {
         errorMessage = "";
         
         try {
-            errorMessage = Part.isValidPart(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), errorMessage);
+            errorMessage = AbstractPart.isValidPart(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), errorMessage);
             if(errorMessage.length() > 0) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error Adding Part!");
+                alert.setTitle("Error Adding AbstractPart!");
                 alert.setHeaderText("Error!");
                 alert.setContentText(errorMessage);
                 alert.showAndWait();
@@ -204,7 +204,7 @@ public class ModifyPartController implements Initializable, Controller {
         } catch (NumberFormatException e) {
             System.out.println("Blank Fields");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error Adding Part!");
+            alert.setTitle("Error Adding AbstractPart!");
             alert.setHeaderText("Error");
             alert.setContentText("Form contains blank field.");
             alert.showAndWait();

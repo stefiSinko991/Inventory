@@ -1,14 +1,13 @@
 
 package inventory.model;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
 public class Product {
     
     // Declare fields
-    private ObservableList<Part> associatedParts;// = FXCollections.observableArrayList();
+    private ObservableList<AbstractPart> associatedParts;// = FXCollections.observableArrayList();
     private int productId;
     private String name;
     private double price;
@@ -17,7 +16,7 @@ public class Product {
     private int max;
 
     // Constructor
-    public Product(int productId, String name, double price, int inStock, int min, int max, ObservableList<Part> partList) {
+    public Product(int productId, String name, double price, int inStock, int min, int max, ObservableList<AbstractPart> partList) {
         this.productId = productId;
         this.name = name;
         this.price = price;
@@ -28,7 +27,7 @@ public class Product {
     }
     
     // Getters
-    public ObservableList<Part> getAssociatedParts() {
+    public ObservableList<AbstractPart> getAssociatedParts() {
         return associatedParts;
     }
 
@@ -57,7 +56,7 @@ public class Product {
     }
     
     // Setters
-    public void setAssociatedParts(ObservableList<Part> associatedParts) {
+    public void setAssociatedParts(ObservableList<AbstractPart> associatedParts) {
         associatedParts = associatedParts;
     }
 
@@ -86,16 +85,16 @@ public class Product {
     }
     
     // Other methods
-    public void addAssociatedPart(Part part) {
+    public void addAssociatedPart(AbstractPart part) {
         associatedParts.add(part);
     }
     
-    public void removeAssociatedPart(Part part) {
+    public void removeAssociatedPart(AbstractPart part) {
         associatedParts.remove(part);
     }
     
-    public Part lookupAssociatedPart(String searchItem) {
-        for(Part p:associatedParts) {
+    public AbstractPart lookupAssociatedPart(String searchItem) {
+        for(AbstractPart p:associatedParts) {
             if(p.getName().contains(searchItem) || new Integer(p.getPartId()).toString().equals(searchItem)) return p;
         }
         return null;
@@ -115,7 +114,7 @@ public class Product {
      * @param errorMessage
      * @return 
      */
-    public static String isValidProduct(String name, double price, int inStock, int min, int max, ObservableList<Part> parts, String errorMessage) {
+    public static String isValidProduct(String name, double price, int inStock, int min, int max, ObservableList<AbstractPart> parts, String errorMessage) {
         double sumOfParts = 0.00;
         for (int i = 0; i < parts.size(); i++) {
             sumOfParts += parts.get(i).getPrice();

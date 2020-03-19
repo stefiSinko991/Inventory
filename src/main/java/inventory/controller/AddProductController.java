@@ -1,6 +1,6 @@
 package inventory.controller;
 
-import inventory.model.Part;
+import inventory.model.AbstractPart;
 import inventory.model.Product;
 import inventory.service.InventoryService;
 import javafx.collections.FXCollections;
@@ -27,7 +27,7 @@ public class AddProductController implements Initializable, Controller {
     // Declare fields
     private Stage stage;
     private Parent scene;
-    private ObservableList<Part> addParts = FXCollections.observableArrayList();
+    private ObservableList<AbstractPart> addParts = FXCollections.observableArrayList();
     private String errorMessage = new String();
     private int productId;
 
@@ -55,34 +55,34 @@ public class AddProductController implements Initializable, Controller {
     private TextField productSearchTxt;
 
     @FXML
-    private TableView<Part> addProductTableView;
+    private TableView<AbstractPart> addProductTableView;
 
     @FXML
-    private TableColumn<Part, Integer> addProductIdCol;
+    private TableColumn<AbstractPart, Integer> addProductIdCol;
 
     @FXML
-    private TableColumn<Part, String> addProductNameCol;
+    private TableColumn<AbstractPart, String> addProductNameCol;
 
     @FXML
-    private TableColumn<Part, Double> addProductInventoryCol;
+    private TableColumn<AbstractPart, Double> addProductInventoryCol;
 
     @FXML
-    private TableColumn<Part, Integer> addProductPriceCol;
+    private TableColumn<AbstractPart, Integer> addProductPriceCol;
 
     @FXML
-    private TableView<Part> deleteProductTableView;
+    private TableView<AbstractPart> deleteProductTableView;
 
     @FXML
-    private TableColumn<Part, Integer> deleteProductIdCol;
+    private TableColumn<AbstractPart, Integer> deleteProductIdCol;
 
     @FXML
-    private TableColumn<Part, String> deleteProductNameCol;
+    private TableColumn<AbstractPart, String> deleteProductNameCol;
 
     @FXML
-    private TableColumn<Part, Double> deleteProductInventoryCol;
+    private TableColumn<AbstractPart, Double> deleteProductInventoryCol;
 
     @FXML
-    private TableColumn<Part, Integer> deleteProductPriceCol;
+    private TableColumn<AbstractPart, Integer> deleteProductPriceCol;
 
     public AddProductController(){}
 
@@ -140,17 +140,17 @@ public class AddProductController implements Initializable, Controller {
      */
     @FXML
     void handleDeleteProduct(ActionEvent event) {
-        Part part = deleteProductTableView.getSelectionModel().getSelectedItem();
+        AbstractPart part = deleteProductTableView.getSelectionModel().getSelectedItem();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.initModality(Modality.NONE);
         alert.setTitle("Confirmation");
-        alert.setHeaderText("Confirm Part Deletion!");
+        alert.setHeaderText("Confirm AbstractPart Deletion!");
         alert.setContentText("Are you sure you want to delete part " + part.getName() + " from parts?");
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.get() == ButtonType.OK) {
-            System.out.println("Part deleted.");
+            System.out.println("AbstractPart deleted.");
             addParts.remove(part);
         } else {
             System.out.println("Canceled part deletion.");
@@ -186,7 +186,7 @@ public class AddProductController implements Initializable, Controller {
      */
     @FXML
     void handleAddProduct(ActionEvent event) {
-        Part part = addProductTableView.getSelectionModel().getSelectedItem();
+        AbstractPart part = addProductTableView.getSelectionModel().getSelectedItem();
         addParts.add(part);
         updateDeleteProductTableView();
     }
@@ -210,7 +210,7 @@ public class AddProductController implements Initializable, Controller {
             errorMessage = Product.isValidProduct(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), addParts, errorMessage);
             if(errorMessage.length() > 0) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error Adding Part!");
+                alert.setTitle("Error Adding AbstractPart!");
                 alert.setHeaderText("Error!");
                 alert.setContentText(errorMessage);
                 alert.showAndWait();

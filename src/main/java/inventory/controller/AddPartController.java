@@ -1,6 +1,6 @@
 package inventory.controller;
 
-import inventory.model.Part;
+import inventory.model.AbstractPart;
 import inventory.service.InventoryService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -107,7 +107,7 @@ public class AddPartController implements Initializable, Controller {
         alert.setContentText("Are you sure you want to cancel adding part?");
         Optional<ButtonType> result = alert.showAndWait();
         if(result.get() == ButtonType.OK) {
-            System.out.println("Ok selected. Part addition canceled.");
+            System.out.println("Ok selected. AbstractPart addition canceled.");
             displayScene(event, "/fxml/MainScreen.fxml");
         } else {
             System.out.println("Cancel clicked.");
@@ -153,10 +153,10 @@ public class AddPartController implements Initializable, Controller {
         errorMessage = "";
         
         try {
-            errorMessage = Part.isValidPart(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), errorMessage);
+            errorMessage = AbstractPart.isValidPart(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), errorMessage);
             if(errorMessage.length() > 0) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error Adding Part!");
+                alert.setTitle("Error Adding AbstractPart!");
                 alert.setHeaderText("Error!");
                 alert.setContentText(errorMessage);
                 alert.showAndWait();
@@ -172,7 +172,7 @@ public class AddPartController implements Initializable, Controller {
         } catch (NumberFormatException e) {
             System.out.println("Form contains blank field.");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error Adding Part!");
+            alert.setTitle("Error Adding AbstractPart!");
             alert.setHeaderText("Error!");
             alert.setContentText("Form contains blank field.");
             alert.showAndWait();
