@@ -1,7 +1,7 @@
 
-o
-java:S1450"TRemove the "stage" field and declare it as a local variable in the relevant methods.(‹ğÑœıÿÿÿÿ
-q
-java:S1450"[Remove the "errorMessage" field and declare it as a local variable in the relevant methods.(®Ãê
 j
 java:S1450"TRemove the "scene" field and declare it as a local variable in the relevant methods.(‹ôÒ¡
+q
+java:S1450"[Remove the "errorMessage" field and declare it as a local variable in the relevant methods.(®Ãê
+o
+java:S1450"TRemove the "stage" field and declare it as a local variable in the relevant methods.(‹ğÑœıÿÿÿÿ

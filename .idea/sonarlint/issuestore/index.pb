@@ -13,3 +13,9 @@ k
 ;src/main/java/inventory/repository/InventoryRepository.java,9\5\959d3be9e6d77120b22cdef08892aae567b3ccfc
 Z
 *src/main/java/inventory/model/Product.java,b\1\b1f9f60d378ed17b8cfbd23f6880c72f0d6cb447
+_
+/src/main/java/inventory/model/AbstractPart.java,8\e\8eca8c5f6bc0c5688396c0d990f23eb4376d63ba
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+i
+9src/test/java/inventory/service/InventoryServiceTest.java,3\4\34ac316ed4f792bc79db6eea4325c9bc6d64247e

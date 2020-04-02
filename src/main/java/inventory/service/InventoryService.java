@@ -17,7 +17,14 @@ public class InventoryService {
     // Se trateaza cazul de adaugare in care piesa este fabricata
     public void addInhousePart(String name, double price, int inStock, int min, int  max, int partDynamicValue){
         InhousePart inhousePart = new InhousePart(repo.getAutoPartId(), name, price, inStock, min, max, partDynamicValue);
-        repo.addPart(inhousePart);
+        String error = "";
+        error = AbstractPart.isValidPart(name, price, inStock, min, max, error);
+
+        if (error.length() == 0){
+            repo.addPart(inhousePart);
+        } else {
+            throw new IllegalArgumentException(error);
+        }
     }
 
     // Se trateaza cazul de adaugare in care piesa este cumparata
