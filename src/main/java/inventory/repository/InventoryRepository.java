@@ -11,8 +11,17 @@ import java.util.StringTokenizer;
 public class InventoryRepository {
 
 	// Se initializeaza repository-ul
-	private static String filename = "data/items.txt";
+	private String filename = "data/items.txt";
 	private Inventory inventory;
+
+	public InventoryRepository(String filename){
+		this.inventory=new Inventory();
+		if(filename.length()>0){
+			this.filename=filename;
+		}
+		readParts();
+		readProducts();
+	}
 
 	public InventoryRepository(){
 		this.inventory=new Inventory();
