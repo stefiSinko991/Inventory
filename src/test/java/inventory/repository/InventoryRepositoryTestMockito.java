@@ -21,7 +21,7 @@ public class InventoryRepositoryTestMockito {
     }
 
     @Test
-    public void findPart() throws ValidationException {
+    public void findPart() {
         AbstractPart part = new OutsourcedPart(1, "Part1", 10.0, 5, 0, 10, "Company1");
         Mockito.when(repo.lookupPart("Part1")).thenReturn(null);
         Mockito.doNothing().when(repo).addPart(part);
@@ -29,8 +29,33 @@ public class InventoryRepositoryTestMockito {
     }
 
     @Test
-    public void addPartWithException() throws ValidationException {
+    public void updatePart() {
+        AbstractPart part = new OutsourcedPart(1, "Part1", 10.0, 5, 0, 10, "Company1");
+        Mockito.when(repo.lookupPart("Part1")).thenReturn(null);
+        Mockito.doNothing().when(repo).addPart(part);
+        Mockito.when(repo.lookupPart("Part1")).thenReturn(part);
+        AbstractPart part2 = new OutsourcedPart(1, "Part2", 10.0, 5, 0, 10, "Company1");
+        Mockito.doNothing().when(repo).updatePart(part.getPartId() , part2);
+        Mockito.when(repo.lookupPart("Part2")).thenReturn(part);
+
+    }
+
+    @Test
+    public void updatePartWithException() {
+        AbstractPart part = new OutsourcedPart(1, "Part1", 10.0, 5, 0, 10, "Company1");
+        Mockito.when(repo.lookupPart("Part1")).thenReturn(null);
+        Mockito.doNothing().when(repo).addPart(part);
+        Mockito.when(repo.lookupPart("Part1")).thenReturn(part);
+        AbstractPart part2 = new OutsourcedPart(1, "Part2", -5.0, 5, 0, 10, "Company1");
+        Mockito.doNothing().when(repo).updatePart(part.getPartId() , part2);
+        Mockito.when(repo.lookupPart("Part2")).thenReturn(null);
+
+    }
+
+    @Test
+    public void addPartWithException(){
         AbstractPart part = new OutsourcedPart(1, "Part 1", -5.0, 5, 0, 10, "Company1");
-        Mockito.doThrow(ValidationException.class).when(repo).addPart(part);
+        Mockito.doNothing().when(repo).addPart(part);
+        Mockito.when(repo.lookupPart("Part 1")).thenReturn(null);
     }
 }
