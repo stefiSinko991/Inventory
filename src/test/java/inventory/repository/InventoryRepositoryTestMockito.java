@@ -8,7 +8,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import javax.xml.bind.ValidationException;
 
 
 public class InventoryRepositoryTestMockito {

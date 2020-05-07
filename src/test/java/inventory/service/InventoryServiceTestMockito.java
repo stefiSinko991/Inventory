@@ -4,7 +4,6 @@ import inventory.model.*;
 import inventory.repository.InventoryRepository;
 import org.junit.jupiter.api.*;
 import org.mockito.*;
-import javax.xml.bind.ValidationException;
 
 import static org.mockito.Mockito.times;
 
@@ -22,7 +21,7 @@ public class InventoryServiceTestMockito {
     }
 
     @Test
-    public void addPart() throws ValidationException {
+    public void addPart(){
         AbstractPart part = new OutsourcedPart(0,"Part1", 10.0, 5, 0, 10, "Company1");
         Mockito.verify(repo, times(0)).addPart(part);
         service.addOutsourcePart("Part1", 10.0, 5, 0, 10, "Company1");
@@ -30,7 +29,7 @@ public class InventoryServiceTestMockito {
     }
 
     @Test
-    public void addPartInvalidPrice() throws ValidationException {
+    public void addPartInvalidPrice(){
         AbstractPart part = new OutsourcedPart(0,"Part1", 10.0, 5, 0, 10, "Company1");
         Mockito.verify(repo, times(0)).addPart(part);
         service.addOutsourcePart("Part1", -5, 5, 0, 10, "Company1");

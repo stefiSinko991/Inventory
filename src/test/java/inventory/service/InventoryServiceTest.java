@@ -45,8 +45,8 @@ class InventoryServiceTest {
             assertEquals(e.getMessage(),"A name has not been entered. ");
         }
     }
-    //@Test
-    @RepeatedTest(2)
+    @Test
+    //@RepeatedTest(2)
     void ECP_valid(){
         InventoryRepository repo = new InventoryRepository();
         InventoryService service = new InventoryService(repo);
